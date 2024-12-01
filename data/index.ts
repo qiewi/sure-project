@@ -9,5 +9,5 @@ export const placeholders = [
     "Universitas Indonesia",
     "Universitas Gadjah Mada",
     "Universitas Airlangga",
-    "Institut Teknologi Surabaya",
+    "Institut Pertanian Bogor",
 ];

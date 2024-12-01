@@ -22,7 +22,7 @@ export const FloatingNav = ({
 }) => {
   const { scrollYProgress } = useScroll();
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -30,12 +30,12 @@ export const FloatingNav = ({
       let direction = current! - scrollYProgress.getPrevious()!;
 
       if (scrollYProgress.get() < 0.05) {
-        setVisible(false);
+        setVisible(true);
       } else {
         if (direction < 0) {
           setVisible(true);
         } else {
-          setVisible(true); // Change to false to hide navbar on scroll down
+          setVisible(false); // Change to false to hide navbar on scroll down
         }
       }
     }
@@ -67,7 +67,7 @@ export const FloatingNav = ({
                 key={`link=${idx}`}
                 href={navItem.link}
                 className={cn(
-                    "relativeitems-center flex lg:space-x-4 sm:space-x-2 text-neutral-300 hover:text-white font-semibold"
+                    "relativeitems-center flex lg:space-x-4 sm:space-x-2 text-neutral-100 hover:text-white font-semibold"
                 )}
             >
             <span className="block sm:hidden">{navItem.icon}</span>

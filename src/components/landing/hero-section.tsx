@@ -37,7 +37,7 @@ const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   console.log("submitted");
 };
 
-export const HeroSection = () => {
+export const Hero = () => {
   return (
     <section className="relative">
       <div className="flex flex-col w-full">
@@ -52,7 +52,7 @@ export const HeroSection = () => {
             <h1 className="text-[2rem] font-semibold absolute top-12 left-12 text-white">
                 SURE
             </h1>
-            <h1 className="text-[5rem] text-white font-bold text-center">
+            <h1 className="text-[5rem] text-white font-bold text-center leading-tight">
                 Discover Your Ideal Dream University
             </h1>
             <h3 className="text-[1.5rem] text-white font-normal text-center">
