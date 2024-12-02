@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-import ITB from "@Images/univ-itb.jpeg";
-import UGM from "@Images/univ-ugm.jpg";
-import UNAIR from "@Images/univ-unair.jpg";
+import DECIDE from "@Images/tutorial-decide.jpg";
+import EXPLORE from "@Images/tutorial-explore.jpg";
+import REVIEW from "@Images/tutorial-review.jpeg";
 
 
 import { Timeline } from "../ui/Timeline";
@@ -15,7 +15,7 @@ const data = [
         <div className="relative">
           {/* Image */}
           <Image
-            src={ITB}
+            src={DECIDE}
             alt="startup template"
             className="rounded-lg object-cover h-80 w-full"
           />
@@ -36,7 +36,7 @@ const data = [
         <div className="relative">
           {/* Image */}
           <Image
-            src={ITB}
+            src={EXPLORE}
             alt="startup template"
             className="rounded-lg object-cover h-80 w-full"
           />
@@ -57,7 +57,7 @@ const data = [
           <div className="relative">
             {/* Image */}
             <Image
-              src={ITB}
+              src={REVIEW}
               alt="startup template"
               className="rounded-lg object-cover h-80 w-full"
             />
