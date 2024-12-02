@@ -49,21 +49,21 @@ export const Hero = () => {
             />
             {/* Overlay */}
             <div className="absolute bg-black/30 inset-0 items-center justify-center align-middle pt-60 px-60 rounded-b-3xl">
-            <h1 className="text-[2rem] font-semibold absolute top-12 left-12 text-white">
-                SURE
-            </h1>
-            <h1 className="text-[5rem] text-white font-bold text-center leading-tight">
-                Discover Your Ideal Dream University
-            </h1>
-            <h3 className="text-[1.5rem] text-white font-normal text-center">
-                Your Academic Success Starts with the Right University
-            </h3>
-            <div className="mt-16">
-                <VanishInput
-                placeholders={placeholders}
-                onChange={handleChange}
-                onSubmit={onSubmit}
-                />
+              <h1 className="text-[2rem] font-semibold absolute top-12 left-12 text-white">
+                  SURE
+              </h1>
+              <h1 className="text-[5rem] text-white font-bold text-center leading-tight">
+                  Discover Your Ideal Dream University
+              </h1>
+              <h3 className="text-[1.5rem] text-white font-normal text-center">
+                  Your Academic Success Starts with the Right University
+              </h3>
+              <div className="mt-16">
+                  <VanishInput
+                  placeholders={placeholders}
+                  onChange={handleChange}
+                  onSubmit={onSubmit}
+                  />
             </div>
         </div>
         

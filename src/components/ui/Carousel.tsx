@@ -119,7 +119,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
+                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl shadow-xl"
               >
                 {item}
               </motion.div>
@@ -170,7 +170,7 @@ export const Card = ({
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "auto ";
     }
 
     window.addEventListener("keydown", onKeyDown);
