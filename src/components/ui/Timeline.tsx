@@ -34,16 +34,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div
-      className="w-full relative bg-neutral-500/20 backdrop-blur-lg rounded-3xl font-sans md:px-10"
+      className="w-full relative bg-white backdrop-blur-lg rounded-3xl font-sans md:px-10"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-5xl font-bold mb-4 text-black dark:text-white max-w-4xl">
+        <h2 className="text-5xl font-bold mb-4 text-black max-w-4xl">
           HOW IT WORKS
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          A quick steps preview of how to get you universities recommendation
-        </p>
+        <h3 className=" text-neutral-400 font-normal text-lg max-w-[50%]">
+          Unlock your academic potential, explore top universities, and find the perfect fit for your future.
+        </h3>
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
@@ -73,14 +73,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
+          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-neutral-300 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-white rounded-full"
+            className="absolute inset-x-0 top-0  w-[2px] bg-black rounded-full"
           />
         </div>
       </div>

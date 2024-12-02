@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import Major from "@Images/person-major.png";
-import Explore from "@Images/person-explore.png";
-import Report from "@Images/person-report.png";
-import HomeBanner from "@Images/home-banner.webp";
+import ITB from "@Images/univ-itb.jpeg";
+import UGM from "@Images/univ-ugm.jpg";
+import UNAIR from "@Images/univ-unair.jpg";
+
 
 import { Timeline } from "../ui/Timeline";
 
@@ -12,16 +12,20 @@ const data = [
     {
       title: "DECIDE",
       content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Start your journey by selecting your preferred field of study. Whether you’re passionate about Science or Humanities, this step will help narrow down the list of majors tailored to your interests.
-          </p>
-          <div className="">
-            <Image
-              src={Major}
-              alt="startup template"
-              className="rounded-lg object-cover h-80 w-full "
-            />
+        <div className="relative">
+          {/* Image */}
+          <Image
+            src={ITB}
+            alt="startup template"
+            className="rounded-lg object-cover h-80 w-full"
+          />
+
+          {/* Text with Glassmorphism */}
+          <div className="absolute bottom-4 left-4 right-4 bg-white/30 backdrop-blur-md rounded-lg p-4">
+            <p className="text-neutral-200 text-sm font-normal">
+              DECIDE YOUR FIELD
+            </p>
+            <p className="text-white text-md font-normal">Start your journey by selecting your preferred field of study. Whether you’re passionate about Science or Humanities, this step will help narrow down the list of majors tailored to your interests.</p>
           </div>
         </div>
       ),
@@ -29,34 +33,42 @@ const data = [
     {
       title: "EXPLORE",
       content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Explore a list of majors within your chosen field and select the one that excites you the most. Your dream major will set the stage for university recommendations.
-          </p>
-          <div className="">
-            <Image
-              src={Explore}
-              alt="startup template"
-              className="rounded-lg object-cover h-80 w-full "
-            />
+        <div className="relative">
+          {/* Image */}
+          <Image
+            src={ITB}
+            alt="startup template"
+            className="rounded-lg object-cover h-80 w-full"
+          />
+
+          {/* Text with Glassmorphism */}
+          <div className="absolute bottom-4 left-4 right-4 bg-white/30 backdrop-blur-md rounded-lg p-4">
+            <p className="text-neutral-200 text-sm font-normal">
+              EXPLORE YOUR MAJORS
+            </p>
+            <p className="text-white text-md font-normal">Explore a list of majors within your chosen field and select the one that excites you the most. Your dream major will set the stage for university recommendations.</p>
           </div>
         </div>
       ),
     },
     {
-        title: "EVALUATE",
+        title: "REVIEW",
         content: (
-          <div>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
-                Based on your scores and preferences, we’ll provide you with 5 personalized university recommendations. Each recommendation is tailored to your academic goals and dream major.
-            </p>
-            <div className="">
-                <Image
-                src={Report}
-                alt="startup template"
-                className="rounded-lg object-cover h-80 w-full"
-                />
-             </div>
+          <div className="relative">
+            {/* Image */}
+            <Image
+              src={ITB}
+              alt="startup template"
+              className="rounded-lg object-cover h-80 w-full"
+            />
+  
+            {/* Text with Glassmorphism */}
+            <div className="absolute bottom-4 left-4 right-4 bg-white/30 backdrop-blur-md rounded-lg p-4">
+              <p className="text-neutral-200 text-sm font-normal">
+                REVIEW OUR RECOMMENDATIONS
+              </p>
+              <p className="text-white text-md font-normal">Based on your scores and preferences, we’ll provide you with 5 personalized university recommendations. Each recommendation is tailored to your academic goals and dream major.</p>
+            </div>
           </div>
         ),
       },
@@ -64,8 +76,8 @@ const data = [
 
 export const Tutorial = () => {
     return (
-      <section className="bg-black w-full mt-20">
-        <div className=" px-28 py-20"> 
+      <section className="bg-white w-full">
+        <div className=""> 
             <Timeline data={data} />
         </div>
       </section>
