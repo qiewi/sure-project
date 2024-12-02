@@ -5,7 +5,6 @@ import DECIDE from "@Images/tutorial-decide.jpg";
 import EXPLORE from "@Images/tutorial-explore.jpg";
 import REVIEW from "@Images/tutorial-review.jpeg";
 
-
 import { Timeline } from "../ui/Timeline";
 
 const data = [

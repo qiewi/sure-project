@@ -4,34 +4,13 @@ import React from "react";
 import Image from "next/image";
 
 import HomeBanner from "@Images/home-banner.webp";
-import { placeholders } from "@/data";
+import { placeholders, CardProps } from "@/data/landing";
 import { VanishInput } from "../ui/VanishInput";
-
-
-
-type cardProps = {
-    number: string;
-    description: string;
-}
-
-const CardProps: cardProps[] = [
-    {
-        number: "85+",
-        description: "Universities"
-    },
-    {
-        number: "3000+",
-        description: "University Majors"
-    },
-    {
-        number: "147K+",
-        description: "Data Samples"
-    }
-]
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   console.log(e.target.value);
 };
+
 const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   console.log("submitted");
