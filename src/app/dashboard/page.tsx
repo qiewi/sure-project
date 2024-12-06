@@ -1,4 +1,5 @@
 // import SignOutButton from '@/src/components/SignOutButton'
+import SignOutButton from '@/src/components/SignOutButton'
 import { getUser } from '@/src/lib/lucia'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -23,9 +24,9 @@ const DashboardPage = async () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="absolute right-4 top-4">
+            <div className="absolute right-4 top-4">
                 <SignOutButton >Sign Out</SignOutButton>
-            </div> */}
+            </div>
         </>
     )
 }
