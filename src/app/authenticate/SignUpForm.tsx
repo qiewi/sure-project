@@ -18,7 +18,8 @@ import { Input } from '@/src/components/ui/Input'
 import { Button } from '@/src/components/ui/Button'
 // import { signUp } from './auth.action'
 import { useRouter } from 'next/navigation'
-// import { toast } from 'sonner'
+import { signUp } from './auth.action'
+import { toast } from 'sonner'
 
 export const signUpSchema = z.object({
     name: z.string().min(5),
@@ -44,13 +45,13 @@ const SignUpForm = () => {
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof signUpSchema>) {
-        // const res = await signUp(values)
-        // if (res.success) {
-        //     toast.success('Account created successfully')
-        //     router.push('/dashboard')
-        // } else {
-        //     toast.error(res.error)
-        // }
+        const res = await signUp(values)
+        if (res.success) {
+            toast.success('Account created successfully')
+            router.push('/dashboard')
+        } else {
+            toast.error(res.error)
+        }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
