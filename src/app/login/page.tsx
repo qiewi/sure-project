@@ -1,13 +1,9 @@
-import { Hero } from "@/src/components/landing/hero-section";
-import { TopUniversities } from "@/src/components/landing/top-universities-section";
-import { Tutorial } from "@/src/components/landing/tutorial-section";
+import { Button } from "@/src/components/ui/button";
 
-export default function Home() {
+export default function Login() {
   return (
     <main>
-      <Hero/>
-      <TopUniversities/>
-      <Tutorial />
+      <Button>HI</Button>
     </main>
   );
 }
