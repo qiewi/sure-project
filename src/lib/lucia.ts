@@ -20,6 +20,7 @@ export const getUser = async () => {
     if (!sessionId) {
         return null
     }
+    
     const { session, user } = await lucia.validateSession(sessionId)
     try {
         if (session && session.fresh) {
