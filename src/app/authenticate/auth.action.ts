@@ -42,25 +42,25 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     }
 }
 
-// export const signIn = async (values: z.infer<typeof signInSchema>) => {
-//     const user = await prisma.user.findUnique({
-//         where: {
-//             email: values.email
-//         }
-//     })
-//     if (!user || !user.hashedPassword) {
-//         return { success: false, error: "Invalid Credentials!" }
-//     }
-//     const passwordMatch = await new Argon2id().verify(user.hashedPassword, values.password)
-//     if (!passwordMatch) {
-//         return { success: false, error: "Invalid Credentials!" }
-//     }
-//     // successfully login
-//     const session = await lucia.createSession(user.id, {})
-//     const sessionCookie = await lucia.createSessionCookie(session.id)
-//     cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
-//     return { success: true }
-// }
+export const signIn = async (values: z.infer<typeof signInSchema>) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            email: values.email
+        }
+    })
+    if (!user || !user.hashedPassword) {
+        return { success: false, error: "Invalid Credentials!" }
+    }
+    const passwordMatch = await new Argon2id().verify(user.hashedPassword, values.password)
+    if (!passwordMatch) {
+        return { success: false, error: "Invalid Credentials!" }
+    }
+    // successfully login
+    const session = await lucia.createSession(user.id, {})
+    const sessionCookie = await lucia.createSessionCookie(session.id)
+    ;(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
+    return { success: true }
+}
 
 // export const logOut = async () => {
 //     const sessionCookie = await lucia.createBlankSessionCookie()

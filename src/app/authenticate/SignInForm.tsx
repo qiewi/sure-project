@@ -16,9 +16,9 @@ import {
 import { z } from "zod"
 import { Input } from '@/src/components/ui/Input'
 import { Button } from '@/src/components/ui/Button'
-// import { signIn } from './auth.action'
+import { signIn } from './auth.action'
 import { useRouter } from 'next/navigation'
-// import { toast } from 'sonner'
+import { toast } from 'sonner'
 
 export const signInSchema = z.object({
     email: z.string().email(),
@@ -37,13 +37,13 @@ const SignInForm = () => {
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof signInSchema>) {
-        // const res = await signIn(values)
-        // if (res.success) {
-        //     toast.success('Login successful')
-        //     router.push('/dashboard')
-        // } else {
-        //     toast.error(res.error)
-        // }
+        const res = await signIn(values)
+        if (res.success) {
+            toast.success('Login successful')
+            router.push('/dashboard')
+        } else {
+            toast.error(res.error)
+        }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
