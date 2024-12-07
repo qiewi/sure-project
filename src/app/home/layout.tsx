@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../globals.css";
+import "@/src/app/globals.css";
 import { FloatingNav } from "../../components/layout/FloatingNavbar";
 import { navItems } from "@/data/landing";
 import Footer from "../../components/layout/Footer";
@@ -35,9 +35,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <FloatingNav navItems={navItems}/>
         {children}
         <Footer />

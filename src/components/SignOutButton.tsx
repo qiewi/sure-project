@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button } from '@/src/components/ui/Button'
-import { logOut } from '@/src/app/authenticate/auth.action'
+import { logOut } from '@/src/app/auth/auth.action'
 
 type Props = {
     children: React.ReactNode

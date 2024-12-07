@@ -57,14 +57,14 @@ const SignUpForm = () => {
         console.log(values)
     }
     return (
-        <Card className='min-w-[500px]'>
+        <Card className='min-w-[500px] bg-neutral-400/30 backdrop-blur-md text-white'>
             <CardHeader>
                 <CardTitle>Begin your journey...</CardTitle>
-                <CardDescription>
+                <CardDescription className="text-white">
                     Create your account to continue.
                 </CardDescription>
             </CardHeader>
-            <CardContent className='space-y-2'>
+            <CardContent className='space-y-'>
                 <Form {...form}>
                     <form className='flex flex-col gap-2' onSubmit={form.handleSubmit(onSubmit)}>
                         <FormField
@@ -142,7 +142,7 @@ const SignUpForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type='submit' className='self-start'>
+                        <Button type='submit' className='self-start mt-2'>
                             Sign Up
                         </Button>
                     </form>

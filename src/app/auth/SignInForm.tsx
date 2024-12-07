@@ -49,10 +49,10 @@ const SignInForm = () => {
         console.log(values)
     }
     return (
-        <Card>
+        <Card className='min-w-[500px] bg-neutral-400/30 backdrop-blur-md text-white'>
             <CardHeader>
                 <CardTitle>Welcome back!</CardTitle>
-                <CardDescription>
+                <CardDescription className='text-white'>
                     Sign in to your account to continue.
                 </CardDescription>
             </CardHeader>
@@ -97,7 +97,7 @@ const SignInForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type='submit' className='self-start'>
+                        <Button type='submit' className='self-start mt-2'>
                             Login
                         </Button>
                     </form>

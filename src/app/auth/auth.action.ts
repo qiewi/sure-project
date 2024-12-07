@@ -65,7 +65,7 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
 export const logOut = async () => {
     const sessionCookie = await lucia.createBlankSessionCookie()
     ;(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
-    return redirect('/authenticate')
+    return redirect('/auth')
 }
 
 // export const getGoogleOauthConsentUrl = async () => {
