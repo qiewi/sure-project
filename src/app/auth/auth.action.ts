@@ -2,9 +2,9 @@
 
 import { z } from "zod"
 import { signUpSchema } from "./SignUpForm"
-import { prisma } from "@/src/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { Argon2id } from 'oslo/password'
-import { lucia } from "@/src/lib/lucia"
+import { lucia } from "@/lib/lucia"
 import { cookies } from "next/headers"
 import { signInSchema } from "./SignInForm"
 import { redirect } from "next/navigation"
