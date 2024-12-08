@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import React from "react";
 
 import UI from "@Images/univ-ui.jpeg";
