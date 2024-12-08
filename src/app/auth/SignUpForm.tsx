@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/src/components/ui/Card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { zodResolver } from "@hookform/resolvers/zod"
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -11,11 +11,11 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/src/components/ui/Form"
+} from "@/components/ui/Form"
 
 import { z } from "zod"
-import { Input } from '@/src/components/ui/Input'
-import { Button } from '@/src/components/ui/Button'
+import { Input } from '@/components/ui/Input'
+import { Button } from '@/components/ui/Button'
 // import { signUp } from './auth.action'
 import { useRouter } from 'next/navigation'
 import { signUp } from './auth.action'

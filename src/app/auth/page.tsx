@@ -1,8 +1,8 @@
-import TabSwitcher from '@/src/components/TabSwitcher';
+import TabSwitcher from '@/components/TabSwitcher';
 import { redirect } from 'next/navigation';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-import { getUser } from '@/src/lib/lucia';
+import { getUser } from '@/lib/lucia';
 import Image from 'next/image';
 
 import BG from '@Images/auth-bg.png';

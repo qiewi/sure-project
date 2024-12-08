@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 import HomeBanner from "@Images/home-banner.webp";
-import { placeholders, CardProps } from "@/data/landing";
+import { placeholders, CardProps } from "@/../data/landing";
 import { VanishInput } from "../ui/VanishInput";
 import { Button } from "../ui/Button";
 

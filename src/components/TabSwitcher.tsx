@@ -1,5 +1,5 @@
 'use client'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/Tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs'
 
 import React from 'react'
 
