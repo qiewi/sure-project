@@ -75,7 +75,7 @@ const data = [
 
 export const Tutorial = () => {
     return (
-      <section className="bg-white w-full">
+      <section className="bg-gray-100 w-full">
         <div className=""> 
             <Timeline data={data} />
         </div>

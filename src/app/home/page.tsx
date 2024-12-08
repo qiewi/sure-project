@@ -4,7 +4,7 @@ import { Tutorial } from "../../components/landing/tutorial-section";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-gray-100">
       <Hero/>
       <TopUniversities/>
       <Tutorial />

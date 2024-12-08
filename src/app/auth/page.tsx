@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm';
 import { getUser } from '@/src/lib/lucia';
 import Image from 'next/image';
 
-import ITB from '@Images/univ-itb.jpeg';
+import BG from '@Images/auth-bg.png';
 
 const AuthenticatePage = async () => {
   const user = await getUser();
@@ -14,13 +14,19 @@ const AuthenticatePage = async () => {
   }
 
   return (
-    <div className="relative justify-center flex items-center h-[100vh] overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
       {/* Background Image */}
-      <Image src={ITB} alt="ITB" className="object-cover w-full" />
+      <Image
+        src={BG}
+        alt="Background"
+        layout="fill" 
+        objectFit="cover" 
+        className="z-0" 
+      />
 
       {/* Form Container */}
       <div
-        className="max-w-3xl w-full h-[550px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent rounded-lg flex justify-center overflow-hidden"
+        className="absolute left-1/2 -translate-x-1/2 top-20 w-full max-w-3xl h-[550px] flex justify-center pt-8"
       >
         <TabSwitcher SignInTab={<SignInForm />} SignUpTab={<SignUpForm />} />
       </div>

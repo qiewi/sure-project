@@ -49,10 +49,10 @@ const SignInForm = () => {
         console.log(values)
     }
     return (
-        <Card className='min-w-[500px] bg-neutral-400/30 backdrop-blur-md text-white'>
+        <Card className='min-w-[500px] bg-white/60 backdrop-blur-sm text-black'>
             <CardHeader>
                 <CardTitle>Welcome back!</CardTitle>
-                <CardDescription className='text-white'>
+                <CardDescription className='text-black'>
                     Sign in to your account to continue.
                 </CardDescription>
             </CardHeader>

@@ -11,11 +11,11 @@ import { Carousel, Card } from "../ui/Carousel";
 
 export const TopUniversities = () => {
   return (
-    <section className="bg-white w-full flex flex-col relative">
+    <section className="bg-gray-100 w-full flex flex-col relative">
       {/* Description */}
-      <div className="flex pt-20 justify-between">
+      <div className="flex pt-40 justify-between">
         <div className="justify-center pl-20">
-          <h1 className=" text-neutral-400 text-left font-normal text-[2.5rem] pt-[1rem]">
+          <h1 className=" text-gray-600 text-left font-normal text-[2.5rem] pt-[1rem]">
               TOP 5
           </h1>
           <h1 className="max-lg:text-transparent text-black text-left font-semibold text-[3rem]">
@@ -23,7 +23,7 @@ export const TopUniversities = () => {
           </h1>
         </div>
         <div className="pt-20 text-right pr-20 w-[40%]">
-          <h3 className=" text-neutral-400 font-normal text-lg">
+          <h3 className=" text-gray-600 font-normal text-lg">
             Unlock your academic potential, explore top universities, and find the perfect fit for your future.
           </h3>
         </div>
