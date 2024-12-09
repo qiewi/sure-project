@@ -26,7 +26,7 @@ const AuthenticatePage = async () => {
 
       {/* Form Container */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-20 w-full max-w-3xl h-[550px] flex justify-center pt-8"
+        className="absolute left-1/2 -translate-x-1/2 pt-8 w-full max-w-3xl h-[550px] flex justify-center"
       >
         <TabSwitcher SignInTab={<SignInForm />} SignUpTab={<SignUpForm />} />
       </div>
