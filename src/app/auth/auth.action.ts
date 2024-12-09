@@ -38,8 +38,9 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
         ;(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
         return { success: true }
     } catch(error)  {
+        const err = error as Error
         console.error(error) 
-        return { success: false, error: 'Something went wrong' }
+        return { success: false, error: err.stack }
     }   
 }
 
