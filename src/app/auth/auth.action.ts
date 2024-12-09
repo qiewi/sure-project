@@ -8,8 +8,6 @@ import { lucia } from "@/lib/lucia"
 import { cookies } from "next/headers"
 import { signInSchema } from "./SignInForm"
 import { redirect } from "next/navigation"
-// import { generateCodeVerifier, generateState } from "arctic"
-// import { googleOAuthClient } from "@/lib/googleOauth"
 
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
@@ -57,7 +55,7 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
     if (!passwordMatch) {
         return { success: false, error: "Invalid Credentials!" }
     }
-    // successfully login
+
     const session = await lucia.createSession(user.id, {})
     const sessionCookie = await lucia.createSessionCookie(session.id)
     ;(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
@@ -65,31 +63,14 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
 }
 
 export const logOut = async () => {
-    const sessionCookie = await lucia.createBlankSessionCookie()
-    ;(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
-    return redirect('/auth')
-}
+    const currentSessionId = (await cookies()).get('lucia_session')?.value;
 
-// export const getGoogleOauthConsentUrl = async () => {
-//     try {
-//         const state = generateState()
-//         const codeVerifier = generateCodeVerifier()
+    if (currentSessionId) {
+        await lucia.invalidateSession(currentSessionId);
+    }
 
-//         cookies().set('codeVerifier', codeVerifier, {
-//             httpOnly: true,
-//             secure: process.env.NODE_ENV === 'production'
-//         })
-//         cookies().set('state', state, {
-//             httpOnly: true,
-//             secure: process.env.NODE_ENV === 'production'
-//         })
+    const sessionCookie = await lucia.createBlankSessionCookie();
+    (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-//         const authUrl = await googleOAuthClient.createAuthorizationURL(state, codeVerifier, {
-//             scopes: ['email', 'profile']
-//         })
-//         return { success: true, url: authUrl.toString() }
-
-//     } catch (error) {
-//         return { success: false, error: 'Something went wrong' }
-//     }
-// }
+    return redirect('/auth');
+};
