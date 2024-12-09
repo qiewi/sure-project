@@ -44,6 +44,7 @@ const SignUpForm = () => {
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof signUpSchema>) {
+        console.log(values)
         const res = await signUp(values)
         if (res.success) {
             toast.success('Account created successfully')

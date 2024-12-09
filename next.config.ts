@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
         },
         ];
     },
+    env: {
+        NEXT_PUBLIC_ENABLE_LOGGING: "true",
+    },
 };
 
 export default nextConfig;

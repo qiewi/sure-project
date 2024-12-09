@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && prisma generate && eslint --no-error-on-unmatched-pattern" ,
+    "build": "next build && prisma generate && eslint --no-error-on-unmatched-pattern",
     "start": "next start",
     "lint": "next lint"
   },
@@ -40,10 +40,12 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
+    "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3",
+    "glob": "^9.0.0",
     "postcss": "^8",
     "prisma": "^5.16.0",
+    "rimraf": "^4.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
