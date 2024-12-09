@@ -14,10 +14,7 @@ const nextConfig: NextConfig = {
             permanent: false,    // Use a temporary redirect (307 status code)
         },
         ];
-    },
-    env: {
-        NEXT_PUBLIC_ENABLE_LOGGING: "true",
-    },
-};
+    }
+}
 
 export default nextConfig;
