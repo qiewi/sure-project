@@ -54,7 +54,6 @@ const SignUpForm = () => {
         }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
     }
     return (
         <Card className='min-w-[500px] bg-white/60 backdrop-blur-sm text-black'>
