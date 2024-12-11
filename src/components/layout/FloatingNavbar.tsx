@@ -77,7 +77,7 @@ export const FloatingNav = ({
         ))}
         <Link href="/auth">
           <Button className="text-neutral-500 bg-white hover:bg-neutral-300 hover:text-white rounded-3xl border-black border-1">
-            Sign In | Sign Up
+            Dashboard
           </Button>
         </Link>
         </motion.div>
