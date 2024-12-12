@@ -1,7 +1,6 @@
 export const navItems = [
     { name: "About", link: "#about" },
     { name: "Universities", link: "#projects" },
-    { name: "Contact", link: "#contact" },
 ];
 
 export const placeholders = [
