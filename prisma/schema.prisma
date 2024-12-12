@@ -50,39 +50,18 @@ model University {
 
 model ScoreScience {
   index             Int @id @default(autoincrement())
-  userId            Int? @map("id_user")
-  firstMajorId      Int? @map("id_first_major") 
-  secondMajorId     Int? @map("id_second_major")
-  firstUniversityId Int? @map("id_first_university")
-  secondUniversityId Int? @map("id_second_university")
-  scoreBio          Int?
-  scoreFis          Int?
-  scoreKim          Int?
-  scoreKmb          Int?
-  scoreKpu          Int?
-  scoreKua          Int?
-  scoreMat          Int?
-  scorePpu          Int?
+  MajorId     Int? @map("id_major")
+  UniversityId Int? @map("id_university")
+  score          Float?
 
   @@map("scores_science")
 }
 
 model ScoreHumanities {
   index             Int @id @default(autoincrement())
-  userId            Int? @map("id_user")
-  firstMajorId      Int? @map("id_first_major") 
-  secondMajorId     Int? @map("id_second_major")
-  firstUniversityId Int? @map("id_first_university")
-  secondUniversityId Int? @map("id_second_university")
-  scoreEko          Int?
-  scoreGeo          Int?
-  scoreKmb          Int?
-  scoreKpu          Int?
-  scoreKua          Int?
-  scoreMat          Int?
-  scorePpu          Int?
-  scoreSej          Int?
-  scoreSos          Int?
+  MajorId     Int? @map("id_major")
+  UniversityId Int? @map("id_university")
+  score          Float?
 
   @@map("scores_humanities")
 }

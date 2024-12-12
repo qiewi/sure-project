@@ -4,7 +4,7 @@ import { z } from "zod"
 import { signUpSchema } from "./SignUpForm"
 import { prisma } from "@/lib/prisma"
 import { Argon2id } from 'oslo/password'
-import { lucia } from "@/lib/lucia"
+import { getUser, lucia } from "@/lib/lucia"
 import { cookies } from "next/headers"
 import { signInSchema } from "./SignInForm"
 import { redirect } from "next/navigation"
@@ -74,3 +74,8 @@ export const logOut = async () => {
 
     return redirect('/auth');
 };
+
+export const fetchUser = async () => {
+    const user = await getUser();
+    return user;
+  };
