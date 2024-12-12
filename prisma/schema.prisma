@@ -28,3 +28,65 @@ model Session {
 
   user User @relation(fields: [userId], references: [id])
 }
+
+model Major {
+  index        Int    @id @default(autoincrement())
+  id           Int    @map("id_major") @unique
+  universityId Int?   @map("id_university") 
+  type         String
+  name         String @map("major_name")
+  capacity     Int?
+
+  @@map("majors")
+}
+
+model University {
+  index Int    @id @default(autoincrement())
+  id    Int    @map("id_university") @unique
+  name  String @map("university_name")
+
+  @@map("universities")
+}
+
+model ScoreScience {
+  index             Int @id @default(autoincrement())
+  userId            Int? @map("id_user")
+  firstMajorId      Int? @map("id_first_major") 
+  secondMajorId     Int? @map("id_second_major")
+  firstUniversityId Int? @map("id_first_university")
+  secondUniversityId Int? @map("id_second_university")
+  scoreBio          Int?
+  scoreFis          Int?
+  scoreKim          Int?
+  scoreKmb          Int?
+  scoreKpu          Int?
+  scoreKua          Int?
+  scoreMat          Int?
+  scorePpu          Int?
+
+  @@map("scores_science")
+}
+
+model ScoreHumanities {
+  index             Int @id @default(autoincrement())
+  userId            Int? @map("id_user")
+  firstMajorId      Int? @map("id_first_major") 
+  secondMajorId     Int? @map("id_second_major")
+  firstUniversityId Int? @map("id_first_university")
+  secondUniversityId Int? @map("id_second_university")
+  scoreEko          Int?
+  scoreGeo          Int?
+  scoreKmb          Int?
+  scoreKpu          Int?
+  scoreKua          Int?
+  scoreMat          Int?
+  scorePpu          Int?
+  scoreSej          Int?
+  scoreSos          Int?
+
+  @@map("scores_humanities")
+}
+
+
+
+
