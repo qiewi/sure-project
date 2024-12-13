@@ -53,6 +53,7 @@ model ScoreScience {
   MajorId     Int? @map("id_major")
   UniversityId Int? @map("id_university")
   score          Float?
+  MajorName   String? @map("major_name")
 
   @@map("scores_science")
 }
@@ -62,6 +63,7 @@ model ScoreHumanities {
   MajorId     Int? @map("id_major")
   UniversityId Int? @map("id_university")
   score          Float?
+  MajorName   String? @map("major_name")
 
   @@map("scores_humanities")
 }
