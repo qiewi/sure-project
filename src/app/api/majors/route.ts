@@ -15,18 +15,22 @@ export async function GET(request: Request) {
       where: {
         name: {
           contains: query,
-          mode: 'insensitive', 
+          mode: 'insensitive',
         },
       },
       select: {
         name: true,
+        type: true, 
       },
-      take: 3, // Fetch more results initially to ensure uniqueness
+      take: 3, 
     });
 
-    // Remove duplicate names using a Set
-    const uniqueMajors = Array.from(new Set(majors.map((major) => major.name))).map((name) => ({ name }));
-
+    const uniqueMajors = Array.from(
+      new Map(
+        majors.map((major) => [major.name.toLowerCase(), major])
+      ).values()
+    );
+    
     return NextResponse.json(uniqueMajors);
   } catch (error) {
     console.error('Error fetching majors:', error);

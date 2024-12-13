@@ -71,16 +71,22 @@ const DashboardPage = () => {
     fetchUser();
   }, [router]);
 
-  const fetchMajors = async (search: string) => {
-    try {
-      const response = await fetch(`/api/majors?q=${search}`);
-      if (!response.ok) throw new Error('Error fetching majors');
-      const data = await response.json();
-      setSuggestions(data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  let debounceTimer: NodeJS.Timeout;
+
+  const fetchMajors = (search: string) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+      try {
+        const response = await fetch(`/api/majors?q=${search}`);
+        if (!response.ok) throw new Error('Error fetching majors');
+        const data = await response.json();
+        setSuggestions(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }, 300); // Delay of 300ms
   };
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -99,13 +105,17 @@ const DashboardPage = () => {
       setError('Please enter a major.');
       return;
     }
-
+  
     try {
       const response = await fetch(`/api/majors?q=${query}`);
       const data = await response.json();
-
-      if (data.some((major: Major) => major.name.toLowerCase() === query.toLowerCase())) {
-        // If the input exists in the majors table, navigate to the recommendation page
+  
+      const major = data.find(
+        (major: { name: string }) => major.name.toLowerCase() === query.toLowerCase()
+      );
+  
+      if (major) {
+        // Only pass the major to the RecommendationPage
         router.push(`/recommendation?major=${encodeURIComponent(query)}`);
       } else {
         // Show an error if the input is not valid
@@ -118,7 +128,9 @@ const DashboardPage = () => {
       setSuggestions([]); // Hide suggestions
     }
   };
-
+  
+  
+  
   const handleSelectMajor = (majorName: string) => {
     setQuery(majorName);
     setSuggestions([]);
