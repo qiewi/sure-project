@@ -232,11 +232,11 @@ const DashboardPage = () => {
                 {/* Left Section: Rank and University Info */}
                 <div className="flex flex-row items-center gap-8">
                   <div>
-                    <h1 className="font-bold text-3xl">#{university.rank}</h1>
+                    <h1 className="font-bold text-3xl">#{index+1}</h1> 
                   </div>
                   <div>
                     <h1 className="font-semibold text-xl">{university.title}</h1>
-                    <h2 className="font-normal text-lg">Fakultas Kedokteran</h2>
+                    <h2 className="font-normal text-lg">{/* Major Name */}</h2>
                   </div>
                 </div>
 

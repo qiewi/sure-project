@@ -24,9 +24,13 @@ const RecommendationContent = () => {
   const [user, setUser] = useState(null);
   const [majorType, setMajorType] = useState<string | null>(null);
   const [averageScore, setAverageScore] = useState<number | null>(null);
+  const [recommendations, setRecommendations] = useState<
+    { id_university: number; score: number }[]
+  >([]);
+  const [loadingRecommendations, setLoadingRecommendations] = useState(false);
 
   const searchParams = useSearchParams();
-  const selectedMajor = searchParams.get('major');
+  const selectedMajor = searchParams.get('major'); // Get the major name
   const router = useRouter();
 
   const getDynamicFields = (type: string) => {
@@ -98,13 +102,27 @@ const RecommendationContent = () => {
     fetchMajorType();
   }, [router, selectedMajor]);
 
-  const onSubmit = (values: Record<string, string | number>) => {
+  const onSubmit = async (values: Record<string, string | number>) => {
     const totalScore = dynamicFields.reduce(
       (sum, field) => sum + (Number(values[field]) || 0),
       0
     );
     const average = totalScore / dynamicFields.length;
     setAverageScore(average);
+
+    try {
+      setLoadingRecommendations(true);
+      const response = await fetch(
+        `/api/universities?major_name=${selectedMajor}&type=${majorType}&average=${average}`
+      );
+      if (!response.ok) throw new Error('Failed to fetch universities');
+      const universities = await response.json();
+      setRecommendations(universities);
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+    } finally {
+      setLoadingRecommendations(false);
+    }
   };
 
   if (!user || !majorType) {
@@ -188,6 +206,21 @@ const RecommendationContent = () => {
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-bold">Your Average Score:</h2>
             <p className="text-xl text-gray-700">{averageScore.toFixed(2)}</p>
+          </div>
+        )}
+
+        {loadingRecommendations && <div>Loading recommendations...</div>}
+
+        {recommendations.length > 0 && (
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h2 className="text-lg font-bold">Top 5 Universities:</h2>
+            <ul>
+              {recommendations.map((uni, index) => (
+                <li key={index} className="text-gray-700">
+                  University ID: {uni.id_university}, Score: {uni.score}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
