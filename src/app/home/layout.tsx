@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "@/app/globals.css";
 import { FloatingNav } from "../../components/layout/FloatingNavbar";
 import { navItems } from "@/../data/landing";
 import Footer from "../../components/layout/Footer";
@@ -10,7 +8,7 @@ export const metadata: Metadata = {
   description: "Smart University Recommendation Engine",
 };
 
-export default function RootLayout({
+export default function homeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -25,7 +23,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <FloatingNav navItems={navItems}/>
         {children}
         <Footer />
       </body>

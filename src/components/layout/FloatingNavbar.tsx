@@ -75,9 +75,9 @@ export const FloatingNav = ({
             <span className="md:text-sm text-[12px] !cursor-pointer">{navItem.name}</span>
             </Link>
         ))}
-        <Link href="/dashboard">
+        <Link href="/home">
           <Button className="text-neutral-500 bg-white hover:bg-neutral-300 hover:text-white rounded-3xl border-black border-1">
-            Dashboard
+            home
           </Button>
         </Link>
         </motion.div>

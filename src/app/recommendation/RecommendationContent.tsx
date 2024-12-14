@@ -109,21 +109,25 @@ const RecommendationContent = () => {
     );
     const average = totalScore / dynamicFields.length;
     setAverageScore(average);
-
+  
     try {
-      setLoadingRecommendations(true);
       const response = await fetch(
         `/api/universities?major_name=${selectedMajor}&type=${majorType}&average=${average}`
       );
       if (!response.ok) throw new Error('Failed to fetch universities');
       const universities = await response.json();
-      setRecommendations(universities);
+  
+      // Navigate back to home with the required data
+      router.push(
+        `/home?major_name=${encodeURIComponent(selectedMajor || '')}&universities=${encodeURIComponent(
+          JSON.stringify(universities)
+        )}`
+      );
     } catch (error) {
       console.error('Error fetching recommendations:', error);
-    } finally {
-      setLoadingRecommendations(false);
     }
   };
+  
 
   if (!user || !majorType) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -209,20 +213,6 @@ const RecommendationContent = () => {
           </div>
         )}
 
-        {loadingRecommendations && <div>Loading recommendations...</div>}
-
-        {recommendations.length > 0 && (
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-lg font-bold">Top 5 Universities:</h2>
-            <ul>
-              {recommendations.map((uni, index) => (
-                <li key={index} className="text-gray-700">
-                  University ID: {uni.id_university}, Score: {uni.score}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   );

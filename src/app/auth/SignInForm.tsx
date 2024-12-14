@@ -39,7 +39,7 @@ const SignInForm = () => {
         const res = await signIn(values)
         if (res.success) {
             toast.success('Login successful')
-            router.push('/dashboard')
+            router.push('/home')
         } else {
             toast.error(res.error)
         }

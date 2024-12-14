@@ -10,7 +10,7 @@ import BG from '@Images/auth-bg.png';
 const AuthenticatePage = async () => {
   const user = await getUser();
   if (user) {
-    return redirect('/dashboard');
+    return redirect('/home');
   }
 
   return (
