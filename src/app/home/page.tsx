@@ -26,6 +26,7 @@ const homePage = () => {
   const [error, setError] = useState('');
   const [universities, setUniversities] = useState<University[]>([]);
   const [majorName, setMajorName] = useState<string | null>(null);
+  const [averageScore, setAverageScore] = useState<number | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -54,6 +55,7 @@ const homePage = () => {
 
     const passedMajorName = searchParams.get('major_name');
     const passedUniversities = searchParams.get('universities');
+    const passedAverageScore = searchParams.get('average_score');
 
     if (passedMajorName && passedUniversities) {
       setMajorName(passedMajorName);
@@ -65,7 +67,7 @@ const homePage = () => {
         // Fetch university names based on IDs
         const fetchUniversityNames = async () => {
           const response = await fetch(`/api/universities/names?ids=${universityIds.join(',')}`);
-          if (!response.ok) throw new Error('Failed to fetch university names');
+          // if (!response.ok) throw new Error('Failed to fetch university names');
           const universityNames = await response.json();
 
           const enrichedUniversities = universityData.map(
@@ -81,6 +83,10 @@ const homePage = () => {
         };
 
         fetchUniversityNames();
+
+        if (passedAverageScore) {
+          setAverageScore(parseFloat(passedAverageScore));
+        }
       } catch (error) {
         console.error('Error parsing university data:', error);
       }
@@ -229,12 +235,21 @@ const homePage = () => {
               <h2 className="text-2xl font-bold text-gray-700">University Recommendation</h2>
               <p className="text-gray-500">
                 {majorName
-                  ? `Here are our top ${universities.length} recommendations for you`
+                  ? <>
+                      { universities.length > 0 ? (
+                        `Here are our top ${universities.length} recommendations for you at ${majorName}.`
+                        ) :  (
+                          "We couldn't find any universities for your current score yet :("
+                        )
+                      }
+                    </>
                   : 'No major is selected yet.'}
               </p>
             </div>
             <div>
-              <Button className="bg-cyan-600 text-white rounded-full px-8 py-4">Save Result</Button>
+                {majorName && universities.length > 0
+                  ? <Button className="bg-cyan-600 text-white rounded-full px-8 py-4">Save Result</Button>
+                  : <Button className="bg-cyan-600 text-white rounded-full px-8 py-4" disabled>Save Result</Button>}
             </div>
           </div>
 
@@ -263,14 +278,56 @@ const homePage = () => {
                   </div>
                 </div>
               ))}
+
+
             </div>
           ) : (
-            <div className="p-8 pt-0 text-center text-gray-500">
-              You must search for the major first :(  
-            </div>
+            <>
+              {!majorName ? (
+                  <div className="p-8 pt-0 flex flex-col gap-4">
+                  <div className="bg-white flex flex-row justify-between border-2 p-8 rounded-3xl items-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                      {/* Left Section: Rank and University Info */}
+                      <div className="flex flex-row items-center gap-8">
+                        <div>
+                          <h1 className="font-bold text-3xl">#1</h1>
+                        </div>
+                        <div>
+                          <h1 className="font-semibold text-xl">Your Dream University</h1>
+                          <h2 className="font-normal text-lg">Your Dream Major</h2>
+                        </div>
+                      </div>
+    
+                      {/* Right Section: Passing Score */}
+                      <div className="text-center">
+                        <p className="text-gray-500">Passing Score</p>
+                        <p className="text-lg font-bold text-gray-700">999</p>
+                      </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-8 pt-0 flex flex-col gap-4">
+                  <div className="bg-white flex justify-center border-2 p-8 rounded-3xl items-center transform transition duration-300 hover:scale-105 hover:shadow-xl flex-col">
+                        <h1 className="font-semibold text-xl">Keep Improving your Score!</h1>
+                        <h2 className="font-normal text-lg">We believe in your potentials.</h2>
+                  </div>
+                </div>
+              )}
+            </>
           )}
+
+          <div className="p-8 pt-0 flex flex-col gap-4">
+            {/* Display Average Score */}
+            {averageScore !== null && (
+                  <div className="p-4 bg-black border-2 rounded-3xl text-center ">
+                    <h2 className="text-lg font-bold text-white">Your Average Score</h2>
+                    <p className="text-xl text-neutral-50 font-semibold">{averageScore.toFixed(2)}</p>
+                  </div>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* How it Works Section */}
     </div>
   );
 };

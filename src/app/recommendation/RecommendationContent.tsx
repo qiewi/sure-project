@@ -24,10 +24,6 @@ const RecommendationContent = () => {
   const [user, setUser] = useState(null);
   const [majorType, setMajorType] = useState<string | null>(null);
   const [averageScore, setAverageScore] = useState<number | null>(null);
-  const [recommendations, setRecommendations] = useState<
-    { id_university: number; score: number }[]
-  >([]);
-  const [loadingRecommendations, setLoadingRecommendations] = useState(false);
 
   const searchParams = useSearchParams();
   const selectedMajor = searchParams.get('major'); // Get the major name
@@ -109,25 +105,24 @@ const RecommendationContent = () => {
     );
     const average = totalScore / dynamicFields.length;
     setAverageScore(average);
-  
+
     try {
       const response = await fetch(
         `/api/universities?major_name=${selectedMajor}&type=${majorType}&average=${average}`
       );
       if (!response.ok) throw new Error('Failed to fetch universities');
       const universities = await response.json();
-  
+
       // Navigate back to home with the required data
       router.push(
         `/home?major_name=${encodeURIComponent(selectedMajor || '')}&universities=${encodeURIComponent(
           JSON.stringify(universities)
-        )}`
+        )}&average_score=${average}`
       );
     } catch (error) {
       console.error('Error fetching recommendations:', error);
     }
   };
-  
 
   if (!user || !majorType) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -205,14 +200,6 @@ const RecommendationContent = () => {
             </form>
           </Form>
         </div>
-
-        {averageScore !== null && (
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-lg font-bold">Your Average Score:</h2>
-            <p className="text-xl text-gray-700">{averageScore.toFixed(2)}</p>
-          </div>
-        )}
-
       </div>
     </div>
   );
