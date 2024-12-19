@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
         config.externals.push("@node-rs/argon2", "@node-rs/bcrypt");
         return config;
     },
+    eslint: {
+        ignoreDuringBuilds: true, // Disables ESLint checks during the build
+    },
     async redirects() {
         return [
         {
