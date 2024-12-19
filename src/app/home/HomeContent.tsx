@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
-import SignOutButton from '@/components/SignOutButton';
 import { Input } from '@/components/ui/Input';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
-import HomeButton from '@/components/HomeButton';
 import { Button } from '@/components/ui/Button';
 import Navbar from '@/components/layout/Navbar';
 import LoadingBar from '@/components/ui/LoadingBar';
+import { toast } from 'sonner';
 
 interface Major {
   name: string;
@@ -42,16 +41,10 @@ const HomeContent = () => {
           credentials: 'include',
         });
 
-        if (!response.ok) {
-          router.push('/auth');
-          return;
-        }
-
         const userData = await response.json();
         setUser(userData);
       } catch (error) {
         console.error('Error fetching user:', error);
-        router.push('/auth');
       }
     };
 
@@ -135,6 +128,12 @@ const HomeContent = () => {
       return;
     }
 
+    if (!user) {
+      toast.error('Please log in to continue.');
+      router.push('/auth');
+      return;
+    }
+
     try {
       const response = await fetch(`/api/majors?q=${query}`);
       const data = await response.json();
@@ -183,15 +182,14 @@ const HomeContent = () => {
       });
   
       if (response.ok) {
-        const data = await response.json();
-        alert("Result saved successfully!");
+        toast.success("Result saved successfully!");
       } else {
         const error = await response.json();
-        alert(`Failed to save result: ${error.error}`);
+        toast.error(`Failed to save result: ${error.error}`);
       }
     } catch (error) {
       console.error("Error saving result:", error);
-      alert("An error occurred while saving the result.");
+      toast.error("An error occurred while saving the result.");
     }
   };
   

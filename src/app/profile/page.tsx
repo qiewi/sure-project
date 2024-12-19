@@ -136,7 +136,7 @@ const ProfilePage = () => {
           <div className="flex flex-col flex-grow">
             <h2 className="text-2xl font-bold mb-4">History</h2>
             <div className="flex-grow bg-transparent pb-4">
-              <div className="max-h-96 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 pb-8">
+              <div className="max-h-96 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-gray-300 custom-scrollbar pb-8 pr-4">
                 {savedResults.map((item) => (
                   <div
                     key={item.id}

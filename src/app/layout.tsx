@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "SURE: by Qie",
@@ -14,13 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add the Poppins font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body>
+        <Toaster />
         {children}
       </body>
   

@@ -28,7 +28,7 @@ const AuthenticatePage = async () => {
       <div
         className="absolute left-1/2 -translate-x-1/2 pt-8 w-full max-w-3xl h-[550px] flex justify-center"
       >
-        <TabSwitcher FirstTitle="Sign in" SecondTitle="Sign Out" FirstTab={<SignInForm />} SecondTab={<SignUpForm />} />
+        <TabSwitcher FirstTitle="Sign in" SecondTitle="Sign Up" FirstTab={<SignInForm />} SecondTab={<SignUpForm />} />
       </div>
     </div>
   );
