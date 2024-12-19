@@ -1,7 +1,7 @@
 // File: /recommendation/page.tsx
 'use client';
 
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import RecommendationContent from './RecommendationContent';
 
 const RecommendationPage = () => {

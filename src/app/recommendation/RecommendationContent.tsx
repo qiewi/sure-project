@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Researcher from '@Images/researcher.png';
-import SignOutButton from '@/components/SignOutButton';
-import HomeButton from '@/components/HomeButton';
 import {
   Form,
   FormControl,
