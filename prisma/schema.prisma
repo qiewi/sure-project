@@ -1,72 +1,97 @@
   // This is your Prisma schema file,
   // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-  generator client {
-    provider = "prisma-client-js"
-  }
+generator client {
+  provider = "prisma-client-js"
+}
 
-  datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-  }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-  model User {
-    id             String  @id @default(cuid())
-    email          String  @unique
-    name           String
-    role           String?
-    hashedPassword String?
-    picture        String?
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  name           String
+  role           String?
+  hashedPassword String?
+  picture        String?
+  session        Session[]
+  savedResults   SavedResult[] // Add this relation field
+}
 
-    session Session[]
-  }
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
 
-  model Session {
-    id        String   @id
-    userId    String
-    expiresAt DateTime
+  user User @relation(fields: [userId], references: [id])
+}
 
-    user User @relation(fields: [userId], references: [id])
-  }
+model Major {
+  index        Int    @id @default(autoincrement())
+  id           Int    @map("id_major") @unique
+  universityId Int?   @map("id_university") 
+  type         String
+  name         String @map("major_name")
+  capacity     Int?
 
-  model Major {
-    index        Int    @id @default(autoincrement())
-    id           Int    @map("id_major") @unique
-    universityId Int?   @map("id_university") 
-    type         String
-    name         String @map("major_name")
-    capacity     Int?
+  @@map("majors")
+}
 
-    @@map("majors")
-  }
+model University {
+  index Int    @id @default(autoincrement())
+  id    Int    @map("id_university") @unique
+  name  String @map("university_name")
 
-  model University {
-    index Int    @id @default(autoincrement())
-    id    Int    @map("id_university") @unique
-    name  String @map("university_name")
+  @@map("universities")
+}
 
-    @@map("universities")
-  }
+model ScoreScience {
+  index             Int @id @default(autoincrement())
+  MajorId     Int? @map("id_major")
+  UniversityId Int? @map("id_university")
+  score          Float?
+  MajorName   String? @map("major_name")
 
-  model ScoreScience {
-    index             Int @id @default(autoincrement())
-    MajorId     Int? @map("id_major")
-    UniversityId Int? @map("id_university")
-    score          Float?
-    MajorName   String? @map("major_name")
+  @@map("scores_science")
+}
 
-    @@map("scores_science")
-  }
+model ScoreHumanities {
+  index             Int @id @default(autoincrement())
+  MajorId     Int? @map("id_major")
+  UniversityId Int? @map("id_university")
+  score          Float?
+  MajorName   String? @map("major_name")
 
-  model ScoreHumanities {
-    index             Int @id @default(autoincrement())
-    MajorId     Int? @map("id_major")
-    UniversityId Int? @map("id_university")
-    score          Float?
-    MajorName   String? @map("major_name")
+  @@map("scores_humanities")
+}
 
-    @@map("scores_humanities")
-  }
+model SavedResult {
+  id              String          @id @default(cuid())
+  userId          String
+  user            User            @relation(fields: [userId], references: [id])
+  majorName       String
+  majorType       String
+  averageScore    Float
+  createdAt       DateTime        @default(now())
+  universityItems UniversityItem[]
+}
+
+model UniversityItem {
+  id             Int          @id @default(autoincrement())
+  universityId   Int          @map("id_university") // Store only the University ID
+  savedResultId  String       @map("id_saved_result")
+  savedResult    SavedResult  @relation(fields: [savedResultId], references: [id])
+  passingGrade   Float        // Add the passing grade field
+  saved          Boolean      @default(false)
+
+  @@map("university_items")
+}
+
+
+
 
 
 

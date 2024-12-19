@@ -19,6 +19,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import Navbar from '@/components/layout/Navbar';
 
 const RecommendationContent = () => {
   const [user, setUser] = useState(null);
@@ -117,8 +118,9 @@ const RecommendationContent = () => {
       router.push(
         `/home?major_name=${encodeURIComponent(selectedMajor || '')}&universities=${encodeURIComponent(
           JSON.stringify(universities)
-        )}&average_score=${average}`
+        )}&average_score=${average}&major_type=${majorType}&saved=true`
       );
+
     } catch (error) {
       console.error('Error fetching recommendations:', error);
     }
@@ -130,13 +132,8 @@ const RecommendationContent = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 min-h-screen">
-      <div className="flex items-center justify-between p-6 px-8 bg-white shadow-md">
-        <h1 className="text-2xl font-bold text-cyan-500">SURE</h1>
-        <div className="flex gap-6">
-          <HomeButton />
-          <SignOutButton>Logout</SignOutButton>
-        </div>
-      </div>
+      {/* Navbar Section */}
+      <Navbar />
 
       <div className="relative flex flex-col items-center justify-center flex-grow text-center py-16 px-4 bg-neutral-50 overflow-hidden">
         <div className="relative flex flex-col justify-center py-8 px-8 text-start bg-white my-4 mb-0 border-2 rounded-3xl w-[70vw] overflow-visible">

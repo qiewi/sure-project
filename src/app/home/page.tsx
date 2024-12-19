@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
 import HomeButton from '@/components/HomeButton';
 import { Button } from '@/components/ui/Button';
+import Navbar from '@/components/layout/Navbar';
 
 interface Major {
   name: string;
@@ -26,6 +27,8 @@ const homePage = () => {
   const [error, setError] = useState('');
   const [universities, setUniversities] = useState<University[]>([]);
   const [majorName, setMajorName] = useState<string | null>(null);
+  const [majorType, setMajorType] = useState<string | null>(null);
+  const [save, setSave] = useState<string | null>(null);
   const [averageScore, setAverageScore] = useState<number | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -56,9 +59,13 @@ const homePage = () => {
     const passedMajorName = searchParams.get('major_name');
     const passedUniversities = searchParams.get('universities');
     const passedAverageScore = searchParams.get('average_score');
+    const passedMajorType = searchParams.get('major_type');
+    const passedSave = searchParams.get('saved');
 
     if (passedMajorName && passedUniversities) {
       setMajorName(passedMajorName);
+      setMajorType(passedMajorType);
+      setSave(passedSave);
 
       try {
         const universityData = JSON.parse(decodeURIComponent(passedUniversities));
@@ -156,6 +163,39 @@ const homePage = () => {
     setError(''); // Clear error when a valid suggestion is selected
   };
 
+  const handleSaveResult = async () => {
+    try {
+      const response = await fetch("/api/save-result", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          majorName,
+          majorType,
+          averageScore,
+          universities: universities.map((uni) => ({
+            id: uni.id, // Pass university ID
+            passingScore: uni.passingScore, // Pass passing score
+          })),
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert("Result saved successfully!");
+      } else {
+        const error = await response.json();
+        alert(`Failed to save result: ${error.error}`);
+      }
+    } catch (error) {
+      console.error("Error saving result:", error);
+      alert("An error occurred while saving the result.");
+    }
+  };
+  
+  
+
   if (!user) {
     return <div className="w-screen h-screen items-center justify-center">Loading...</div>;
   }
@@ -163,13 +203,7 @@ const homePage = () => {
   return (
     <div className="flex flex-col bg-gray-50 min-h-screen">
       {/* Navbar Section */}
-      <div className="flex items-center justify-between p-6 px-8 bg-white shadow-md">
-        <h1 className="text-2xl font-bold text-cyan-500">SURE</h1>
-        <div className="flex gap-6">
-          <HomeButton />
-          <SignOutButton>Logout</SignOutButton>
-        </div>
-      </div>
+      <Navbar />
 
       {/* Hero Section */}
       <div className="relative flex flex-col items-center justify-center flex-grow text-center py-16 px-4 bg-neutral-50 overflow-hidden h-[600px]">
@@ -247,8 +281,8 @@ const homePage = () => {
               </p>
             </div>
             <div>
-                {majorName && universities.length > 0
-                  ? <Button className="bg-cyan-600 text-white rounded-full px-8 py-4">Save Result</Button>
+                {majorName && universities.length > 0 && save === "true"
+                  ? <Button className="bg-cyan-600 text-white rounded-full px-8 py-4" onClick={handleSaveResult}>Save Result</Button>
                   : <Button className="bg-cyan-600 text-white rounded-full px-8 py-4" disabled>Save Result</Button>}
             </div>
           </div>

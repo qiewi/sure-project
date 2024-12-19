@@ -54,6 +54,7 @@ export const getUser = async () => {
             id: user.id, // Ensure user.id is defined
         },
         select: {
+            id: true,
             name: true,
             email: true,
             picture: true,
