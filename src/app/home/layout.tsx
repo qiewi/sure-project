@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { FloatingNav } from "../../components/layout/FloatingNavbar";
-import { navItems } from "@/../data/landing";
 import Footer from "../../components/layout/Footer";
 
 export const metadata: Metadata = {
