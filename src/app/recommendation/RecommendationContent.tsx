@@ -18,6 +18,7 @@ import { z } from 'zod';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import Navbar from '@/components/layout/Navbar';
+import LoadingBar from '@/components/ui/LoadingBar';
 
 const RecommendationContent = () => {
   const [user, setUser] = useState(null);
@@ -125,7 +126,9 @@ const RecommendationContent = () => {
   };
 
   if (!user || !majorType) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return (
+      <LoadingBar />
+    );
   }
 
   return (

@@ -8,6 +8,7 @@ import { FaSearch } from 'react-icons/fa';
 import HomeButton from '@/components/HomeButton';
 import { Button } from '@/components/ui/Button';
 import Navbar from '@/components/layout/Navbar';
+import LoadingBar from '@/components/ui/LoadingBar';
 
 interface Major {
   name: string;
@@ -197,7 +198,9 @@ const HomeContent = () => {
   
 
   if (!user) {
-    return <div className="w-screen h-screen items-center justify-center">Loading...</div>;
+    return (
+      <LoadingBar />
+    );
   }
 
   return (
