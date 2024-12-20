@@ -15,15 +15,14 @@ export async function GET(request: Request) {
     // Fetch university names based on the IDs
     const universities = await prisma.university.findMany({
       where: {
-        id: { in: universityIds }, // Matches the Prisma schema's `id` field
+        id: { in: universityIds }, 
       },
       select: {
-        id: true, // Ensure we're using `id`, mapped from `id_university`
-        name: true, // The field mapped from `university_name`
+        id: true,
+        name: true,
       },
     });
 
-    // Create a dictionary mapping IDs to names
     const result = universities.reduce<Record<number, string>>((acc, uni) => {
         acc[uni.id] = uni.name;
         return acc;

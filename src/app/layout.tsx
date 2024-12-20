@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "SURE: by Qie",
+  title: "SURE: Smart University Recommendation Engine",
   description: "Smart University Recommendation Engine",
 };
 
